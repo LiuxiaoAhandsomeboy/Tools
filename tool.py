@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 import streamlit as st
 
 '''
@@ -113,10 +112,11 @@ column1 = 2
 column2 = 4
 
 st.title("Create EOL Mapping")
-
+'''
 result_list = get_eol_process()
 result_list = return_eol_process_list()
 convert_result_list_to_perl_form(result_list)
+'''
 
 
 
