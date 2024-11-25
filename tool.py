@@ -80,11 +80,10 @@ column1 = 2
 column2 = 4
 
 
-
-result_list = get_eol_process()
-result_list = return_eol_process_list()
-convert_result_list_to_perl_form(result_list)
-
+if excel_file_path and mapping_diag_file_path:
+    result_list = get_eol_process()
+    result_list = return_eol_process_list()
+    convert_result_list_to_perl_form(result_list)
 
 
 
