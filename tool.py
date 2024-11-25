@@ -63,13 +63,14 @@ def convert_result_list_to_perl_form(result_list):
         if item not in supported_all_test_steps.values():
             supported_all_test_steps[index] = item
             result_string += f"        '{index}' => {item},\n"
+            selected_supported_steps_in_project.append(str(index))
         else:
             for key, value in supported_all_test_steps.items():
                 if value == item:
                     selected_supported_steps_in_project.append(str(key))
                     break
     result_string += f"'Selected_SupportedStepsInProject' => {selected_supported_steps_in_project}"
-    st.write(result_string)
+    st.markdown(result_string)
 
 
 
