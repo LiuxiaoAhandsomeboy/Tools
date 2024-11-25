@@ -87,7 +87,7 @@ if excel_file_path and mapping_diag_file_path and sheet_name and column1 and col
     column1 = int(column1)
     column2 = int(column2)
     result_list = get_eol_process()
-    result_list = return_eol_process_list()
+    result_list = return_eol_process_list(mapping_diag_file_path)
     convert_result_list_to_perl_form(result_list)
 
 
