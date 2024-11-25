@@ -80,8 +80,8 @@ excel_file_path = st.file_uploader("上传EOL输入文件", type=["xlsx"])
 mapping_diag_file_path = st.file_uploader("上传 mapping diag 文件", type=["pm"])
 
 sheet_name = st.text_input("Enter sheet name")
-column1 = st.text_input("Enter column1 name")
-column2 = st.text_input("Enter column2 name")
+column1 = int(st.text_input("Enter column1 name"))
+column2 = int(st.text_input("Enter column2 name"))
 
 st.title("Create EOL Mapping")
 
