@@ -1,10 +1,16 @@
-import pandas as pd
 import streamlit as st
+import openpyxl
 
 
 def get_eol_process():
-    df = pd.read_excel(excel_file_path, sheet_name=sheet_name)
-    result_dict = {row[column1]: (row[column2] if pd.notna(row[column2]) else None) for index, row in df.iterrows() if pd.notna(row[column1])}
+    wb = openpyxl.load_workbook(excel_file_path)
+    sheet = wb[sheet_name]
+    result_dict = {}
+    for row in sheet.iter_rows():
+        if row[column1].value is not None:
+            key = row[column1].value
+            value = row[column2].value if row[column2].value is not None else None
+            result_dict[key] = value
     result_dict = process_dict_values(result_dict)
     result_list = convert_dict_to_list(result_dict)
     return result_list
@@ -70,7 +76,6 @@ def convert_result_list_to_perl_form(result_list):
 
 
 # 上传文件
-st.title("Create EOL Mapping")
 excel_file_path = st.file_uploader("上传EOL输入文件", type=["xlsx"])
 mapping_diag_file_path = st.file_uploader("上传 mapping diag 文件", type=["pm"])
 
@@ -79,11 +84,13 @@ sheet_name = 'EOL'
 column1 = 2
 column2 = 4
 
+st.title("Create EOL Mapping")
 
 if excel_file_path and mapping_diag_file_path:
     result_list = get_eol_process()
     result_list = return_eol_process_list()
     convert_result_list_to_perl_form(result_list)
+
 
 
 
