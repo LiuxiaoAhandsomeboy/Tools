@@ -1,40 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-'''
-# Get the current directory
-current_dir = os.getcwd()
 
-# Find all xlsx files in the current directory
-xlsx_files = [file for file in os.listdir(current_dir) if file.endswith('.xlsx')]
-
-# Check if there is exactly one xlsx file
-if len(xlsx_files) == 0:
-    raise ValueError("No xlsx file found in the current directory.")
-elif len(xlsx_files) > 1:
-    raise ValueError("Multiple xlsx files found in the current directory.")
-
-# Get the full path of the xlsx file
-excel_file_path = os.path.join(current_dir, xlsx_files[0])
-
-# Find all pm files in the current directory
-pm_files = [file for file in os.listdir(current_dir) if file.endswith('.pm')]
-
-# Check if there is exactly one pm file
-if len(pm_files) == 0:
-    raise ValueError("No pm file found in the current directory.")
-elif len(pm_files) > 1:
-    raise ValueError("Multiple pm files found in the current directory.")
-
-# Get the full path of the pm file
-pm_file_path = os.path.join(current_dir, pm_files[0])
-
-excel_file_path = xlsx_files
-mapping_diag_file_path = pm_file_path
-sheet_name = 'EOL'
-column1 = 2
-column2 = 4
-'''
 def get_eol_process():
     df = pd.read_excel(excel_file_path, sheet_name=sheet_name)
     result_dict = {row[column1]: (row[column2] if pd.notna(row[column2]) else None) for index, row in df.iterrows() if pd.notna(row[column1])}
@@ -103,6 +70,7 @@ def convert_result_list_to_perl_form(result_list):
 
 
 # 上传文件
+st.title("Create EOL Mapping")
 excel_file_path = st.file_uploader("上传EOL输入文件", type=["xlsx"])
 mapping_diag_file_path = st.file_uploader("上传 mapping diag 文件", type=["pm"])
 
@@ -111,7 +79,7 @@ sheet_name = 'EOL'
 column1 = 2
 column2 = 4
 
-st.title("Create EOL Mapping")
+
 '''
 result_list = get_eol_process()
 result_list = return_eol_process_list()
