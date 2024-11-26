@@ -30,14 +30,13 @@ def convert_dict_to_list(dictionary):
 
 def return_eol_process_list(mapping_diag_file_path):
     mapping_diag = {}
-    with open(mapping_diag_file_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            if "=> {'Request' =>" in line:
-                key_value = line.split('=>')
-                mapping_diag[key_value[0].replace("\t","").replace("'","").replace('"','')] = key_value[2].replace("\n", "").replace(",", "").replace("}", "").replace("'", "")
-        
-        processed_values = []
-        for item in result_list:
+    for line in mapping_diag_file_path.getvalue().decode().splitlines():
+        if "=> {'Request' =>" in line:
+            key_value = line.split('=>')
+            mapping_diag[key_value[0].replace("\t","").replace("'","").replace('"','')] = key_value[2].replace("\n", "").replace(",", "").replace("}", "").replace("'", "")
+    
+    processed_values = []
+    for item in result_list:
             c, d = item.split(':')
             d = d.strip()
             found = False
