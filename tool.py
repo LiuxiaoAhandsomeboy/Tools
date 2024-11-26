@@ -28,6 +28,7 @@ def process_dict_values(dictionary):
 def convert_dict_to_list(dictionary):
     return [f"{key}:{value}" for key, value in dictionary.items()]
 
+
 def return_eol_process_list(mapping_diag_file_path):
     mapping_diag = {}
     for line in mapping_diag_file_path.getvalue().decode().splitlines():
@@ -37,27 +38,30 @@ def return_eol_process_list(mapping_diag_file_path):
     
     processed_values = []
     for item in result_list:
-            c, d = item.split(':')
-            d = d.strip()
+        c, d = item.split(':')
+        d = d.strip()
+        found = False
+        if not d:
             found = False
-            if not d:
-                found = False
+        else:
+            for key, value in mapping_diag.items():
+                #if value.strip() == d:
+                if d in value.strip():
+                    processed_values.append(key)
+                    found = True
+                    break
+        if not found:
+            if 'Power on ECU' in c:
+                processed_values.append('LC_ECU_On')
+                processed_values.append('WaitTime_8000')
+            elif ('Wait' in c or 'wait' in c):
+                processed_values.append('WaitTime_')
             else:
-                for key, value in mapping_diag.items():
-                    #if value.strip() == d:
-                    if d in value.strip():
-                        processed_values.append(key)
-                        found = True
-                        break
-            if not found:
-                if 'Power on ECU' in c:
-                    processed_values.append('LC_ECU_On')
-                    processed_values.append('WaitTime_8000')
-                elif ('Wait' in c or 'wait' in c):
-                    processed_values.append('WaitTime_')
-                else:
-                    processed_values.append(c)
-        return processed_values
+                processed_values.append(c)
+    return processed_values
+
+
+  
 
 def convert_result_list_to_perl_form(result_list):
     supported_all_test_steps = {}
