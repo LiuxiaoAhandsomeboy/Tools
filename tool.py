@@ -1,6 +1,7 @@
 import streamlit as st
 import openpyxl
 
+st.title("Create EOL Mapping")
 
 def get_eol_process():
     wb = openpyxl.load_workbook(excel_file_path)
@@ -89,7 +90,6 @@ sheet_name = st.text_input("Enter sheet name")
 column1 = st.text_input("Enter column1 name")
 column2 = st.text_input("Enter column2 name")
 
-st.title("Create EOL Mapping")
 
 if excel_file_path and mapping_diag_file_path and sheet_name and column1 and column2:
     column1 = int(column1)
