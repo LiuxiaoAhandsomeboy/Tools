@@ -75,7 +75,7 @@ def convert_result_list_to_perl_form(result_list):
 
 
 # 上传文件
-excel_file_path = st.file_uploader("上传EOL输入文件", type=["xlsx"]，multiple=true)
+excel_file_path = st.file_uploader("上传EOL输入文件", type=["xlsx"])
 mapping_diag_file_path = st.file_uploader("上传 mapping diag 文件", type=["pm"])
 
 sheet_name = st.text_input("Enter sheet name")
