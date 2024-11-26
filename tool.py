@@ -70,7 +70,7 @@ def convert_result_list_to_perl_form(result_list):
     for index, item in enumerate(result_list, start=1):
         if item not in supported_all_test_steps.values():
             supported_all_test_steps[index] = item
-            st.markdown( f"        '{index}' => {item},\n"）
+            st.markdown( f"        '{index}' => {item},\n")
             selected_supported_steps_in_project.append(str(index))
         else:
             for key, value in supported_all_test_steps.items():
