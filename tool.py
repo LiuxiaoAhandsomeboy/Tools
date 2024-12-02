@@ -13,7 +13,7 @@ def get_eol_process():
             if find_value(row[column2].value):
                 value = find_value(row[column2].value).replace('$','').replace('0x', '').replace('0X', '') if row[column2].value is not None else None
             else:
-                value = row[column2].replace('$','').replace('0x', '').replace('0X', '') if row[column2].value is not None else None
+                value = row[column2].value.replace('$','').replace('0x', '').replace('0X', '') if row[column2].value is not None else None
             result_dict[key] = value
     result_dict = process_dict_values(result_dict)
     result_list = convert_dict_to_list(result_dict)
