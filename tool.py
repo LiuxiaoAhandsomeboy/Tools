@@ -18,7 +18,7 @@ def get_eol_process():
     
 def find_value(s):
     for i in s.split('\n'):
-        if 'request' in i:
+        if 'Send' in i:
             return i
 
 def process_dict_values(dictionary):
