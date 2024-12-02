@@ -15,6 +15,11 @@ def get_eol_process():
     result_dict = process_dict_values(result_dict)
     result_list = convert_dict_to_list(result_dict)
     return result_list
+    
+def find_value(s):
+    for i in s.split('\n'):
+        if 'request' in i:
+            return i
 
 def process_dict_values(dictionary):
     processed_dict = {}
