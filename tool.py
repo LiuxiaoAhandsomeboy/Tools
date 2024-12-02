@@ -10,7 +10,7 @@ def get_eol_process():
     for row in sheet.iter_rows():
         if row[column1].value is not None:
             key = row[column1].value
-            if find_value(row[column2].value):
+            if 'Send' in row[column2].value:
                 value = find_value(row[column2].value).replace('$','').replace('0x', '').replace('0X', '') if row[column2].value is not None else None
             else:
                 value = row[column2].value.replace('$','').replace('0x', '').replace('0X', '') if row[column2].value is not None else None
