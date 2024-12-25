@@ -99,7 +99,7 @@ column2 = st.text_input("Enter column of diag request")
 if excel_file_path and mapping_diag_file_path and sheet_name and column1 and column2:
     column1 = int(column1)
     column2 = int(column2)
-    result_list = ['进入扩展模式\n\nStart Diagnostic Extented\nSession:10 03', '安全认证\nSecurity Access:27 01', '读取软件件号\nRead SW Number:22 F1 88', '写入VIN\nWrite VIN: 2E F1 90', '写入ECU安装日期\nWrite ECUInstallationDate:2E F1 9D', '写入回路配置参数\nWrite ECU Configuration:2E FA 00', '写入整车配置参数\nWrite Vehicle Configuration:2E F1 97',  '写入CAN报文参数\nWrite CAN configuration:2E FB 00', 'IDF功能配置\nWrite IDF configuration:2E FC 00', '等待\nWait:', '复位\nRe set:11 03', '等待ECU初始化\nWait for ECU Initialization:', '读回路配置参数\nRead ECU Configuration:22 FA 00', '读CAN报文参数\nRead CAN configuration:22 FB 00', '读IDF功能配置\nRead IDF configuration:22 FC 00', '读整车配置参数\nRead Vehicle Configuration:22 F1 97', '读最终配置参数\nRead real ECU Configuration:22 F1 98', '读故障码\nRead Fault Memory:19 02 01', '进入扩展模式\nStart Diagnostic Extented Session:10 03', '使能ECU点火功能\nEnable Fire:2E FA 0F', '复位\nSoft Reset:11 03 ', '清除故障码\nClear DTCs:14 FF FF FF', '读故障码\nRead DTC\n:19 02 09', '读使能点火状态\nRead Enable Firing of ECU:22 FA 0F ', 'power off:', '结束\nEnd:None']
+    result_list = get_eol_process()
     result_list = return_eol_process_list(mapping_diag_file_path)
     convert_result_list_to_perl_form(result_list)
 
